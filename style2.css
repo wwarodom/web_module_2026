@@ -8,11 +8,20 @@
 }
 
 body {
-    margin-left: 4em;
-    margin-right: 4em;
+    margin: auto;
+    width: 40vw;
 }
 
+/* header,
+footer {
+    width: fit-content;
+    margin: auto;
+} */
+
+
 section {
+
+    max-width: 500px;
     color: #FFF157;
     background: #000;
     border: 3px solid grey;
