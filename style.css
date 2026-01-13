@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    padding: 2em;
+    border: 2px solid black;
+}
+
+
+/* Tag selector */
+h1 {
+    width: fit-content;
+    margin: auto;
+    color: rgb(144, 68, 191);
+    font-size: 3rem;
+    text-shadow: 2px 2px 2px rgb(0, 85, 255);
+}
+
+/* Id Selector */
+#green {
+    color: green;
+    font-size: 2rem;
+}
+
+/*  Class selector */
+.big-red-text {
+    font-size: 2.5rem;
+    color: red;
+}
