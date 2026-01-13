@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.pink {
+    color: pink;
+}
+
+body {
+    margin-left: 4em;
+}
+
+section {
+    background: lightyellow;
+    border: 3px solid red;
+    border-radius: 8px;
+    margin-top: 1em;
+    padding: 0.5em;
+}
+
+footer {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-top: 1em;
+}
