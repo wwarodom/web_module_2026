@@ -4,16 +4,18 @@
 }
 
 .pink {
-    color: pink;
+    color: #AD4036;
 }
 
 body {
     margin-left: 4em;
+    margin-right: 4em;
 }
 
 section {
-    background: lightyellow;
-    border: 3px solid red;
+    color: #FFF157;
+    background: #000;
+    border: 3px solid grey;
     border-radius: 8px;
     margin-top: 1em;
     padding: 0.5em;
