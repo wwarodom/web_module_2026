@@ -1,0 +1,36 @@
+.banner {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: green;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 2rem;
+    /* line-height: 200px; */
+    text-align: center;
+    color: white;
+}
+
+.cover {
+    position: absolute;
+    border-radius: 80px;
+    width: 80px;
+    height: 80px;
+    /* left: calc(100% - 380px/2); */
+    transform: translate(-40%, 0);
+    top: -20%;
+    background: white;
+}
+
+.banner_text {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+}
+
+.banner span {
+    position: absolute;
+    color: lightcyan;
+    bottom: 4px;
+    right: 4px;
+}
