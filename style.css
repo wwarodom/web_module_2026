@@ -4,11 +4,21 @@
     box-sizing: border-box;
 }
 
-header {
+header,
+footer {
     padding: 2em;
     border: 2px solid black;
 }
 
+.copyright {
+    padding: 0.5em;
+    border-radius: 1em;
+    background: lightsalmon;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: auto;
+    border: 2px solid green;
+}
 
 /* Tag selector */
 h1 {
