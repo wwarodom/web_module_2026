@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    display: flex;
+    height: 60vh;
+    list-style-type: none;
+    gap: 1em;
+    /* justify-content: space-between; */
+    align-items: baseline;
+    border: 2px solid red;
+    /* flex-direction: column; */
+}
+
+li {
+    border: 2px solid black;
+    padding: 0.5em;
+}
+
+li:first-child {
+    margin-right: auto;
+    font-size: 3rem;
+    align-self: stretch;
+}
+
+li:last-child {
+    margin-left: auto;
+}
+
+li:nth-child(2) {
+    color: red;
+}

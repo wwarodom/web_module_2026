@@ -28,6 +28,10 @@ input {
     font-size: 1.3rem;
 }
 
+.submit {
+    text-align: center;
+}
+
 button {
     margin-top: 1em;
     padding: 0.5em;
