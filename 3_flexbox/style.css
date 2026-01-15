@@ -6,30 +6,53 @@
 
 ul {
     display: flex;
-    height: 60vh;
     list-style-type: none;
     gap: 1em;
-    /* justify-content: space-between; */
-    align-items: baseline;
+    justify-content: center;
+    /* align-items: center; */
     border: 2px solid red;
     /* flex-direction: column; */
 }
 
 li {
+    height: fit-content;
     border: 2px solid black;
     padding: 0.5em;
 }
 
 li:first-child {
-    margin-right: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
     font-size: 3rem;
     align-self: stretch;
 }
 
+li:nth-child(2) {
+    order: 1;
+    flex-grow: 4;
+    background: green;
+}
+
+main {
+    display: flex;
+    gap: 1em;
+}
+
+p {
+    border: 2px solid black;
+    padding: 1em;
+    /* flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100px; */
+    flex: 1 0 100px;
+}
+
+/*
 li:last-child {
     margin-left: auto;
 }
 
-li:nth-child(2) {
-    color: red;
-}
+li:nth-child(4) {
+    background: green;
+    align-self: center;
+} */
