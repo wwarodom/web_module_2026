@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    width: 60%;
+    max-width: 400px;
+    border: 2px solid black;
+    margin: 30vh auto;
+    padding: 2em;
+    background: rgb(223, 238, 244);
+    box-shadow: 2px 2px 2px 2px black;
+}
+
+h1,
+div {
+    text-shadow: 1px 1px;
+    margin-bottom: 0.5em;
+}
+
+label,
+input {
+    width: 100%;
+    padding: 0.2em;
+    margin-top: 0.2em;
+    font-size: 1.3rem;
+}
+
+button {
+    margin-top: 1em;
+    padding: 0.5em;
+}
+
+button:hover {
+    box-shadow: 2px 2px 2px 2px rgb(80, 199, 245);
+}
