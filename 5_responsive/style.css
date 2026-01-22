@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, white, rgb(141, 112, 112));
+}
+
+h1 {
+    padding: 0.5em;
+    font-size: clamp(1.5rem, 2.5vw, 3.5rem);
+}
+
+main {
+    display: grid;
+    gap: 3em;
+    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+}
+
+.card {
+    margin: 2em;
+    width: 14em;
+    border: 2px solid black;
+    border-radius: 1em;
+    overflow: hidden;
+    transition: width 2s, height 4s, background-color 3s;
+}
+
+.card:hover {
+    box-shadow: 4px 4px 4px black;
+    scale: 1.5;
+    rotate: 15deg;
+    transform: skewY(10deg);
+    width: 18em;
+    background-color: orange;
+
+}
+
+.card h2 {
+    padding: 0 0.6em;
+}
+
+.card img {
+    width: 100%;
+}
+
+
+
+@keyframes myAnimation {
+    from {
+        color: red;
+    }
+
+    to {
+        color: yellow;
+    }
+}
+
+/* The element to apply the animation to */
+header h1 {
+    /* color: red;
+    animation-name: myAnimation;
+    animation-duration: 4s; */
+
+    position: relative;
+    animation-name: header_move;
+    animation-duration: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes header_move {
+    0% {
+        left: 0px;
+    }
+
+    50% {
+        font-size: 5rem;
+        left: 70vw;
+        color: red;
+    }
+
+    100% {
+        left: 0px;
+    }
+}
