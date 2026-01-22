@@ -17,7 +17,7 @@
                 <li>Menu2</li>
                 <li>Menu3</li>
             </ul>
-            <div class="hamburger" onclick="openMenu()">
+            <div class="hamburger" onclick="toggleMenu()">
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
@@ -28,7 +28,7 @@
                 <div class="menu-item">Menu2</div>
                 <div class="menu-item">Menu3</div>
                 <hr />
-                <div class="menu-item exit">Exit</div>
+                <div class="menu-item exit" onclick="toggleMenu()">Exit</div>
             </div>
 
         </nav>
@@ -40,10 +40,14 @@
     </main>
 
     <script>
-        function openMenu() {
+        function toggleMenu() {
             // alert('Open menu')
             let menu = document.getElementById("menu")
             console.log("Menu: ", menu)
+            if(menu.style.display === "block")
+                menu.style.display = "none"
+            else
+                menu.style.display = "block"
         }
     </script>
 
