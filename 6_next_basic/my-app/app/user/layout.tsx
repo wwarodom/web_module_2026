@@ -1,3 +1,5 @@
+import Nav from "@/components/nav";
+
 export default function Layout({
     children,
 }: Readonly<{
@@ -5,6 +7,7 @@ export default function Layout({
 }>) {
     return <>
         ==== User Layout =====
+        <Nav />
         {children}
     </>
 }
