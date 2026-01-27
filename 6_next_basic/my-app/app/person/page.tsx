@@ -4,8 +4,17 @@ export default function PersonPage() {
     const [person, setPerson] = useState({
         id: 1,
         name: "Warodom",
-        age: 47
+        age: 47,
+        hobby: "Guitar"
     })
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
+        console.log("Name: ", name, "value: ", value)
+        setPerson(
+            (prev) => ({ ...prev, [name]: value })
+        )
+    }
 
     return <div>
         <hr />
@@ -18,29 +27,37 @@ export default function PersonPage() {
                 <input
                     className="border-2 p-2 m-2 rounded"
                     type="text"
+                    name="name"
                     value={person.name}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                        setPerson(
-                            (prev) =>({ ...prev, name: e.target.value })
-                        )
-                    }}
+                    onChange={handleChange}
                 />
             </div>
         </div>
         <div>
             <div>
-                Person.name: {person.age}
+                Person.age: {person.age}
             </div>
             <div>
                 <input
                     className="border-2 p-2 m-2 rounded"
                     type="number"
+                    name="age"
                     value={person.age}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                        setPerson((prev) =>
-                            ({ ...prev, age: +e.target.value })
-                        )
-                    }}
+                    onChange={handleChange}
+                />
+            </div>
+        </div>
+        <div>
+            <div>
+                Person.hobby: {person.hobby}
+            </div>
+            <div>
+                <input
+                    className="border-2 p-2 m-2 rounded"
+                    name="hobby"
+                    type="text"
+                    value={person.hobby}
+                    onChange={handleChange}
                 />
             </div>
         </div>
