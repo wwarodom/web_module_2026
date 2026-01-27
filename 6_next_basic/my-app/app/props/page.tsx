@@ -42,7 +42,6 @@ function B({ bar, bar2, myPrint }: {
     bar2: string,
     myPrint: () => void
 }) {
-
     // This function cannot be executed on Parent component!
     const idkFunction = () => {
         console.log("Do something")
