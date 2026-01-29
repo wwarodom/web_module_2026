@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 
 type PersonType = {
     id: number
@@ -14,6 +14,7 @@ export default function PersonsPage() {
         { id: 3, name: "Joe Nuvo", age: 19 },
     ])
 
+    const [form, setForm] = useState({ id: 0, name: '', age: 1 })
     const myNumber = ["_"]
 
     return <main className="flex justify-center items-center min-h-[95vh]">
@@ -40,7 +41,14 @@ export default function PersonsPage() {
                 <div>
                     <input
                         className="border p-2 mb-2 rounded-md"
-                        type="text" name="name" />
+                        type="text" name="name"
+                        value={form.name}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                            console.log(e.target.value)
+                            setForm((prev) => ({ ...prev, name: e.target.value }
+                            ))
+                        }}
+                    />
                 </div>
                 <div>
                     <label htmlFor="name">Age</label>
