@@ -36,6 +36,8 @@ export default function PersonsPage() {
 
     const deleteUser = (id: number) => {
         console.log("Delete this user id: ", id)
+        const tmpPersons = persons.filter((item) => (item.id !== id))
+        setPersons(tmpPersons)
     }
 
     return <main className="flex justify-center items-center min-h-[95vh]">
