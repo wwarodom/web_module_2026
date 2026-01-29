@@ -1,5 +1,5 @@
 'use client'
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 
 type PersonType = {
     id: number
@@ -14,13 +14,20 @@ export default function PersonsPage() {
         { id: 3, name: "Joe Nuvo", age: 19 },
     ])
 
-    const [form, setForm] = useState({ id: 0, name: '', age: 1 })
+    const [form, setForm] = useState({ name: '', age: 1 })
     const myNumber = ["_"]
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        console.log("Name: ", name, "Value: ", value)
+        // console.log("Name: ", name, "Value: ", value)
         setForm((prev) => ({ ...prev, [name]: value }))
+    }
+
+    const addPerson = (e: FormEvent) => {
+        e.preventDefault()
+        console.log(persons[persons.length - 1].id + 1)
+        console.log("Form: ", form)
+        setPersons([...persons, { id: persons[persons.length - 1].id + 1, ...form }])
     }
 
     return <main className="flex justify-center items-center min-h-[95vh]">
@@ -39,7 +46,10 @@ export default function PersonsPage() {
                 }
             </ul>
 
-            <div className="border p-4 my-4 bg-white rounded-xl">
+            <form className="border p-4 my-4 bg-white rounded-xl"
+                action="#"
+                onSubmit={addPerson}
+            >
                 <h1>Add Person</h1>
                 <div>
                     <label htmlFor="name">Name</label>
@@ -68,7 +78,7 @@ export default function PersonsPage() {
                         className="border px-2 py-1 rounded hover:shadow-xl"
                     >Add</button>
                 </div>
-            </div>
+            </form>
 
 
             <div>
