@@ -31,11 +31,33 @@ export default function PersonsPage() {
         setForm((prev) => ({ ...prev, [name]: value }))
     }
 
-    const addPerson = (e: FormEvent) => {
+    const updatePerson = (e: FormEvent) => {
         e.preventDefault()
-        console.log(persons[length]?.id)
-        const id = (persons.length) ? persons[persons.length - 1].id + 1 : 1
-        setPersons([...persons, { id, ...form }])
+
+        if (editId === -1) {
+            console.log(persons[length]?.id)
+            const id = (persons.length) ? persons[persons.length - 1].id + 1 : 1
+            setPersons([...persons, { id, ...form }])
+        }
+        else {
+            const tmpPersons = persons.map((item) => {
+                if (item.id === editId) {
+                    return { id: editId, ...form }
+                }
+                else {
+                    return { ...item }
+                }
+            })
+
+            // const tmpPersons = persons.map( item => 
+            //     (item.id === editId)?{ id: editId, ...form }:{ ...item })
+
+            setPersons([...tmpPersons])
+            setEditId(-1)
+            setForm({ name: "", age: 1 })
+        }
+
+
     }
 
     const deleteUser = (id: number) => {
@@ -50,7 +72,7 @@ export default function PersonsPage() {
         console.log("editId: ", editId)
 
         const index = persons.findIndex((item) => (item.id === id))
-        const {name, age} = persons[index]
+        const { name, age } = persons[index]
         setForm({ name, age })
 
         // const tmpPerson = persons.filter((item) => (item.id === id))
@@ -79,9 +101,12 @@ export default function PersonsPage() {
 
             <form className="border p-4 my-4 bg-white rounded-xl"
                 action="#"
-                onSubmit={addPerson}
+                onSubmit={updatePerson}
             >
-                <h1>Add Person</h1>
+                <h1>
+                    {(editId === -1) ? "Add " : "Edit "}
+                    Person
+                </h1>
                 <div>
                     <label htmlFor="name">Name</label>
                 </div>
@@ -107,7 +132,9 @@ export default function PersonsPage() {
                 <div>
                     <button
                         className="border px-2 py-1 rounded hover:shadow-xl"
-                    >Add</button>
+                    >
+                        {(editId === -1) ? "Add" : "Update"}
+                    </button>
                 </div>
             </form>
 
