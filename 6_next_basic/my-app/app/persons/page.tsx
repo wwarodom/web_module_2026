@@ -32,17 +32,19 @@ export default function PersonsPage() {
                 }
             </ul>
             <div>
-                {
-                    myNumber.map((foo) => <div
-                        className={`${ (foo === "Three") ? "text-3xl" : "" } text-red-800`}
-                    >
-                        {foo}
-                    </div>
-                    )
-                }
+                <PrintNumber myNumber={myNumber} />
             </div>
         </div>
     </main>
+}
+
+function PrintNumber({ myNumber }: { myNumber: string[] }) {
+    return myNumber.map((foo) => <div
+        className={`${ (foo === "One") ? "text-2xl font-bold" : "" } text-red-800`}
+    >
+        {foo}
+    </div>
+    )
 }
 
 function PersonDetail({ id, name, age }: PersonType) {
