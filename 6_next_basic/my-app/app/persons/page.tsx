@@ -10,9 +10,13 @@ export default function PersonsPage() {
     return <main className="flex justify-center items-center min-h-[95vh]">
         <div className="bg-amber-50 p-32">
             <h1 className="text-2xl mb-2">Person</h1>
-            <div>
-                {JSON.stringify(persons)}
-            </div>
+            <ul>
+                {
+                    persons.map((item) => (<li>
+                        {item.id}: {item.name} {item.age}
+                    </li>))
+                }
+            </ul>
         </div>
     </main>
 }
