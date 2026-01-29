@@ -23,6 +23,8 @@ export default function PersonsPage() {
     const [form, setForm] = useState({ name: '', age: 1 })
     const myNumber = ["_"]
 
+    const [editId, setEditId] = useState(-1)
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         // console.log("Name: ", name, "Value: ", value)
@@ -44,6 +46,16 @@ export default function PersonsPage() {
 
     const editUser = (id: number) => {
         console.log("Edit user id: ", id)
+        setEditId(id)
+        console.log("editId: ", editId)
+
+        const index = persons.findIndex((item) => (item.id === id))
+        const {name, age} = persons[index]
+        setForm({ name, age })
+
+        // const tmpPerson = persons.filter((item) => (item.id === id))
+        // console.log("tmpPerson: ", tmpPerson)
+        // setForm({ name: tmpPerson[0].name, age: tmpPerson[0].age })
     }
 
     return <main className="flex justify-center items-center min-h-[95vh]">
