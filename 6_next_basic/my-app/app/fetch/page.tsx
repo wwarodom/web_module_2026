@@ -9,6 +9,7 @@ type UserType = {
     bio: string
     avatar_url: string
 }
+ 
 
 export default function MyFetch() {
 
