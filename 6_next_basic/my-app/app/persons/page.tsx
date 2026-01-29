@@ -32,7 +32,7 @@ export default function PersonsPage() {
                 }
             </ul>
 
-            <div className="border p-4 m-4">
+            <div className="border p-4 my-4 bg-white rounded-xl">
                 <h1>Add Person</h1>
                 <div>
                     <label htmlFor="name">Name</label>
@@ -47,8 +47,13 @@ export default function PersonsPage() {
                 </div>
                 <div>
                     <input
-                        className="border p-2 mb-2 rounded-md"
+                        className="border p-2 mb-4 rounded-md"
                         type="number" name="age" />
+                </div>
+                <div>
+                    <button
+                        className="border px-2 py-1 rounded hover:shadow-xl"
+                    >Add</button>
                 </div>
             </div>
 
