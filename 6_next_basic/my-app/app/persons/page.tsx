@@ -30,6 +30,10 @@ export default function PersonsPage() {
         setPersons([...persons, { id: persons[persons.length - 1].id + 1, ...form }])
     }
 
+    const deleteUser = (id: number) => {
+        console.log("Delete this user id: ", id)
+    }
+
     return <main className="flex justify-center items-center min-h-[95vh]">
         <div className="bg-amber-50 p-32">
             <h1 className="text-2xl mb-2">Person</h1>
@@ -41,6 +45,7 @@ export default function PersonsPage() {
                             id={item.id}
                             name={item.name}
                             age={item.age}
+                            deleteUser={deleteUser}
                         />
                     ))
                 }
@@ -97,8 +102,15 @@ function PrintNumber({ myNumber }: { myNumber: string[] }) {
     )
 }
 
-function PersonDetail({ id, name, age }: PersonType) {
+function PersonDetail({ id, name, age, deleteUser }: PersonType) {
+
+
     return (<li key={id}>
         {id}: {name} {age}
+        <span>
+            <button className="border px-2"
+                onClick={deleteUser}
+            > x </button>
+        </span>
     </li>)
 }
