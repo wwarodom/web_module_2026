@@ -14,7 +14,7 @@ export default function PersonsPage() {
         { id: 3, name: "Joe Nuvo", age: 19 },
     ])
 
-    const myNumber = ["One", "Two", "Three", "Four"]
+    const myNumber = ["_"]
 
     return <main className="flex justify-center items-center min-h-[95vh]">
         <div className="bg-amber-50 p-32">
@@ -31,6 +31,28 @@ export default function PersonsPage() {
                     ))
                 }
             </ul>
+
+            <div className="border p-4 m-4">
+                <h1>Add Person</h1>
+                <div>
+                    <label htmlFor="name">Name</label>
+                </div>
+                <div>
+                    <input
+                        className="border p-2 mb-2 rounded-md"
+                        type="text" name="name" />
+                </div>
+                <div>
+                    <label htmlFor="name">Age</label>
+                </div>
+                <div>
+                    <input
+                        className="border p-2 mb-2 rounded-md"
+                        type="number" name="age" />
+                </div>
+            </div>
+
+
             <div>
                 <PrintNumber myNumber={myNumber} />
             </div>
