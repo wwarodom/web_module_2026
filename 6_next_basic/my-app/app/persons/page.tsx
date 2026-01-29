@@ -2,6 +2,7 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 
 type PersonType = {
+    newId: number
     id: number
     name: string
     age: number
@@ -49,6 +50,7 @@ export default function PersonsPage() {
                         <PersonDetail
                             key={index}
                             id={item.id}
+                            newId={index}
                             name={item.name}
                             age={item.age}
                             deleteUser={deleteUser}
@@ -108,9 +110,10 @@ function PrintNumber({ myNumber }: { myNumber: string[] }) {
     )
 }
 
-function PersonDetail({ id, name, age, deleteUser }: PersonPropsType) {
+function PersonDetail({ newId, id, name, age, deleteUser }: PersonPropsType) {
     return (<li key={id}>
-        {id}: {name} {age}
+        {newId + 1}: {name} {age}
+        <div>person:{id}</div>
         <span>
             <button className="border px-2"
                 onClick={() => deleteUser(id)}
