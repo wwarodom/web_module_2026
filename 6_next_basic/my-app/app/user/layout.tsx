@@ -6,8 +6,6 @@ export default function Layout({
     children: React.ReactNode;
 }>) {
     return <>
-        ==== User Layout =====
-        <Nav />
         {children}
     </>
 }
