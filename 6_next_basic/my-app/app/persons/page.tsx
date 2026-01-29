@@ -7,6 +7,10 @@ type PersonType = {
     age: number
 }
 
+type PersonPropsType = PersonType & {
+    deleteUser: (id: number) => void
+}
+
 export default function PersonsPage() {
     const [persons, setPersons] = useState([
         { id: 1, name: "Warodom Werapun", age: 47 },
@@ -102,14 +106,12 @@ function PrintNumber({ myNumber }: { myNumber: string[] }) {
     )
 }
 
-function PersonDetail({ id, name, age, deleteUser }: PersonType) {
-
-
+function PersonDetail({ id, name, age, deleteUser }: PersonPropsType) {
     return (<li key={id}>
         {id}: {name} {age}
         <span>
             <button className="border px-2"
-                onClick={deleteUser}
+                onClick={() => deleteUser(id)}
             > x </button>
         </span>
     </li>)
