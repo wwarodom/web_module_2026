@@ -10,6 +10,7 @@ type PersonType = {
 
 type PersonPropsType = PersonType & {
     deleteUser: (id: number) => void
+    editUser: (id: number) => void
 }
 
 export default function PersonsPage() {
@@ -30,15 +31,19 @@ export default function PersonsPage() {
 
     const addPerson = (e: FormEvent) => {
         e.preventDefault()
-        console.log(persons[persons.length - 1].id + 1)
-        console.log("Form: ", form)
-        setPersons([...persons, { id: persons[persons.length - 1].id + 1, ...form }])
+        console.log(persons[length]?.id)
+        const id = (persons.length) ? persons[persons.length - 1].id + 1 : 1
+        setPersons([...persons, { id, ...form }])
     }
 
     const deleteUser = (id: number) => {
         console.log("Delete this user id: ", id)
         const tmpPersons = persons.filter((item) => (item.id !== id))
         setPersons(tmpPersons)
+    }
+
+    const editUser = (id: number) => {
+        console.log("Edit user id: ", id)
     }
 
     return <main className="flex justify-center items-center min-h-[95vh]">
@@ -54,6 +59,7 @@ export default function PersonsPage() {
                             name={item.name}
                             age={item.age}
                             deleteUser={deleteUser}
+                            editUser={editUser}
                         />
                     ))
                 }
@@ -110,14 +116,17 @@ function PrintNumber({ myNumber }: { myNumber: string[] }) {
     )
 }
 
-function PersonDetail({ newId, id, name, age, deleteUser }: PersonPropsType) {
+function PersonDetail({ newId, id, name, age, deleteUser, editUser }: PersonPropsType) {
     return (<li key={id}>
         {newId + 1}: {name} {age}
-        <div>person:{id}</div>
+        <div>personID:{id}</div>
         <span>
             <button className="border px-2"
                 onClick={() => deleteUser(id)}
             > x </button>
+            <button className="border px-2"
+                onClick={() => editUser(id)}
+            > Edit </button>
         </span>
     </li>)
 }
