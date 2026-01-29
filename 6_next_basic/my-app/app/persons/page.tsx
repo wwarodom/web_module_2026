@@ -82,7 +82,7 @@ export default function PersonsPage() {
 
     return <main className="flex justify-center items-center min-h-[95vh]">
         <div className="bg-amber-50 p-32">
-            <h1 className="text-2xl mb-2">Person</h1>
+            <h1 className="text-2xl mb-2 font-bold text-gray-600">Person</h1>
             <ul>
                 {
                     persons.map((item, index) => (
@@ -103,27 +103,31 @@ export default function PersonsPage() {
                 action="#"
                 onSubmit={updatePerson}
             >
-                <h1>
+                <h1 className="font-bold text-gray-600">
                     {(editId === -1) ? "Add " : "Edit "}
                     Person
                 </h1>
                 <div>
-                    <label htmlFor="name">Name</label>
+                    <label
+                        className="text-md text-gray-600"
+                        htmlFor="name">Name</label>
                 </div>
                 <div>
                     <input
-                        className="border p-2 mb-2 rounded-md"
+                        className="border p-2 mb-2 rounded-md text-md text-gray-600 w-full focus:outline-amber-800"
                         type="text" name="name"
                         value={form.name}
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="name">Age</label>
+                    <label
+                        className="text-md text-gray-600"
+                        htmlFor="name">Age</label>
                 </div>
                 <div>
                     <input
-                        className="border p-2 mb-4 rounded-md"
+                        className="border p-2 mb-4 rounded-md text-md text-gray-600 w-full focus:outline-amber-800"
                         type="number" name="age"
                         value={form.age}
                         onChange={handleChange}
@@ -131,7 +135,7 @@ export default function PersonsPage() {
                 </div>
                 <div>
                     <button
-                        className="border px-2 py-1 rounded hover:shadow-xl"
+                        className="border px-2 py-1 rounded hover:shadow-xl text-md text-gray-600"
                     >
                         {(editId === -1) ? "Add" : "Update"}
                     </button>
@@ -156,16 +160,25 @@ function PrintNumber({ myNumber }: { myNumber: string[] }) {
 }
 
 function PersonDetail({ newId, id, name, age, deleteUser, editUser }: PersonPropsType) {
-    return (<li key={id}>
-        {newId + 1}: {name} {age}
-        <div>personID:{id}</div>
-        <span>
-            <button className="border px-2"
-                onClick={() => deleteUser(id)}
-            > x </button>
-            <button className="border px-2"
-                onClick={() => editUser(id)}
-            > Edit </button>
-        </span>
+    return (<li key={id}
+        className="bg-red-50 p-4 mb-4 w-[50vw] rounded-xl border-2 border-amber-600 shadow-xl"
+    >
+        <div className="flex justify-between text-gray-600">
+            <div>
+                <div>Order: {newId + 1}</div>
+                <div>Name: {name}</div>
+                <div>Age: {age}</div>
+                <div>personID:{id}</div>
+            </div>
+            <div className="flex flex-col justify-between">
+                <button className="border rounded  border-amber-600 bg-red-800 text-white"
+                    onClick={() => deleteUser(id)}
+                > x </button>
+                <button className="border px-1 rounded bg-green-600 text-white hover:border-amber-700"
+                    onClick={() => editUser(id)}
+                > Edit </button>
+            </div>
+        </div>
+
     </li>)
 }
