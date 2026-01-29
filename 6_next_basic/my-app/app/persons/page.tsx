@@ -1,5 +1,12 @@
 'use client'
 import { useState } from "react"
+
+type PersonType = {
+    id: number
+    name: string
+    age: number
+}
+
 export default function PersonsPage() {
     const [persons, setPersons] = useState([
         { id: 1, name: "Warodom Werapun", age: 47 },
@@ -12,11 +19,21 @@ export default function PersonsPage() {
             <h1 className="text-2xl mb-2">Person</h1>
             <ul>
                 {
-                    persons.map((item) => (<li>
-                        {item.id}: {item.name} {item.age}
-                    </li>))
+                    persons.map((item, index) => (
+                        <PersonDetail
+                            id={item.id}
+                            name={item.name}
+                            age={item.age}
+                        />
+                    ))
                 }
             </ul>
         </div>
     </main>
+}
+
+function PersonDetail({ id, name, age }) {
+    return (<li key={id}>
+        {id}: {name} {age}
+    </li>)
 }
