@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type UserType = {
     login: string
@@ -15,6 +15,8 @@ export default function MyFetch() {
 
     const [user, setUser] = useState('wwarodom')
     const [data, setData] = useState<UserType>()
+
+    useEffect( () => {} , [] )
 
     const fetchUser = async () => {
         const URL = `https://api.github.com/users/${ user }`
