@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { EXTRA_STYLE, StudentType, STYLE, URL } from '@/constants/type'
+import { EXTRA_STYLE, StudentType, STYLE, URL } from '@/constants/type' 
 
 export default function Crud() {
     const [student, setStudent] = useState<StudentType>()
@@ -10,6 +10,8 @@ export default function Crud() {
         name: "Warodom",
         age: 30
     })
+
+    const [editId, setEditId] = useState("0")
 
     const getAllStudents = async () => {
         const response = await fetch(URL)
@@ -35,13 +37,27 @@ export default function Crud() {
     const createStudent = async () => {
         console.log("Click create student")
         const { name, age } = form
-        const response = await fetch(URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application.json"
-            },
-            body: JSON.stringify({ name, age })
-        })
+
+        if (editId === "0") {
+            const response = await fetch(URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application.json"
+                },
+                body: JSON.stringify({ name, age })
+            })
+        }
+        else {
+            const response = await fetch(`${ URL }/${ editId }`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application.json"
+                },
+                body: JSON.stringify({ name, age })
+            })
+            setEditId("0")
+            setForm({ name: "", age: 0 })
+        }
         await getAllStudents()
     }
 
@@ -50,6 +66,12 @@ export default function Crud() {
             method: "DELETE"
         })
         await getAllStudents()
+    }
+
+    const editStudent = async (id: string) => {
+        const student = await getStudent(id)
+        setForm({ name: student.name, age: student.age })
+        setEditId(student.id)
     }
 
     useEffect(() => {
@@ -70,12 +92,17 @@ export default function Crud() {
                     students.map((item, index) =>
                     (<li key={index}>
                         {item.id}:{item.name}
-
                         <button
                             className={STYLE}
                             onClick={() => deleteStudent(item.id)}
                         >
                             x
+                        </button>
+                        <button
+                            className={STYLE}
+                            onClick={() => editStudent(item.id)}
+                        >
+                            Edit
                         </button>
                     </li>))
                 }
@@ -83,7 +110,9 @@ export default function Crud() {
         </div>
 
         <div className="p-4  bg-green-50 rounded shadow border">
-            <h1>Add</h1>
+            <h1>
+                {(editId === "0") ? "Add" : "Update"}
+            </h1>
             <div>
                 <div>
                     Name: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="text"
@@ -102,7 +131,10 @@ export default function Crud() {
                 <div>
                     <button className={STYLE}
                         onClick={createStudent}
-                    >Add</button>
+                    >
+                        {(editId === "0") ? "Add" : "Update"}
+
+                    </button>
                 </div>
             </div>
         </div>
