@@ -1,12 +1,15 @@
-const URL = `http://localhost:4000/students`
-const STYLE = `border m-2 p-2 shadow rounded text-gray font-bold`
-const EXTRA_STYLE = `focus:outline-amber-200`
+'use client'
 
-export default async function Crud() {
+import { useEffect, useState } from "react"
+import { StudentType, URL } from '@/constants/type'
 
+export default function Crud() {
+    const [student, setStudent] = useState<StudentType>()
+    const [students, setStudents] = useState<StudentType[]>()
     const getAllStudents = async () => {
         const response = await fetch(URL)
         const students = await (response.json())
+        setStudents(students)
         return students;
     }
 
@@ -16,6 +19,7 @@ export default async function Crud() {
             if (!response.ok)
                 throw new Error(`HTTP error! ${ response.status }`)
             const student = await response.json()
+            setStudent(student)
             return student
         }
         catch (error) {
@@ -24,7 +28,8 @@ export default async function Crud() {
     }
 
     const createStudent = async () => {
-        const res = await fetch(URL, {
+        console.log("Click create student")
+        const response = await fetch(URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application.json"
@@ -36,8 +41,9 @@ export default async function Crud() {
         })
     }
 
-    const students = await getAllStudents()
-    const student = await getStudent("0007")
+    useEffect(() => {
+
+    })
 
     return <>
         <h1>CRUD </h1>
@@ -57,10 +63,17 @@ export default async function Crud() {
 
         <h1>Add</h1>
         <div>
-            Name: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="text" />
-            <button className={STYLE} 
-                
+            <div>
+                Name: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="text" />
+            </div>
+            <div>
+                Age: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="number" />
+            </div>
+            <div>
+                <button className={STYLE}
+                    onClick={createStudent}
                 >Add</button>
+            </div>
         </div>
     </>
 }
