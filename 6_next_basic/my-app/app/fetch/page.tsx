@@ -17,12 +17,14 @@ export default function MyFetch() {
     const [data, setData] = useState<UserType>()
 
     useEffect(() => {
-        fetchUser()
+        const controller = new AbortController()
+        fetchUser(controller.signal)
+        return () => controller.abort()  // to protect memory leaking
     }, [])
 
-    const fetchUser = async () => {
+    const fetchUser = async (signal?: AbortSignal): Promise<void> => {
         const URL = `https://api.github.com/users/${ user }`
-        const response = await fetch(URL);
+        const response = await fetch(URL, { signal });
         const data = await response.json()
         console.log("Data: ", data)
         setData(data)
@@ -59,7 +61,9 @@ export default function MyFetch() {
                 <div>
                     <div>
                         {
-                            (data.avatar_url) && <Image src={data.avatar_url} width={100} height={100} alt="my_photo" />
+                            (data.avatar_url) && <Image src={data.avatar_url}
+                                width={100} height={100} alt="my_photo"
+                                loading="eager" />
                         }
                     </div>
                 </div>
