@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { EXTRA_STYLE, StudentType, STYLE, URL } from '@/constants/type' 
+import { EXTRA_STYLE, StudentType, STYLE, URL } from '@/constants/type'
 
 export default function Crud() {
     const [student, setStudent] = useState<StudentType>()
     const [students, setStudents] = useState<StudentType[]>()
+    const [error, setError] = useState<Error>()
+
     const [form, setForm] = useState({
         name: "Warodom",
         age: 30
@@ -13,11 +15,21 @@ export default function Crud() {
 
     const [editId, setEditId] = useState("0")
 
-    const getAllStudents = async () => {
-        const response = await fetch(URL)
-        const students = await (response.json())
-        setStudents(students)
-        return students;
+    const getAllStudents = async (signal?: AbortSignal) => {
+        try {
+            const response = await fetch(URL, { signal })
+            if (!response.ok)
+                throw new Error(`HTTP error! ${ response.status }`)
+            const students = await (response.json())
+            setStudents(students)
+            return students;
+
+        }
+        catch (error) {
+            if (error instanceof Error)
+                setError(error)
+            console.log("Failed to fetch students: ", error)
+        }
     }
 
     const getStudent = async (id: string) => {
@@ -79,6 +91,8 @@ export default function Crud() {
         getAllStudents()
         console.log("Student: ", student)
     }, [])
+
+    if (error) return <p>Error: {error.message} </p>
 
     return <div className="border m-6 p-6 bg-amber-50 shadow-xl rounded">
         <h1 className="text-xl font-bold">CRUD </h1>
