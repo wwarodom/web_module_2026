@@ -1,5 +1,5 @@
-
 const URL = `http://localhost:4000/students`
+const STYLE = `border m-2 p-2 shadow rounded text-gray font-bold`
 
 export default async function Crud() {
 
@@ -39,6 +39,16 @@ export default async function Crud() {
                     </li>))
                 }
             </ul>
+        </div>
+
+        <h1>Add</h1>
+        <div>
+            Name: <input
+                className={STYLE}
+                type="text" />
+            <button
+                className={STYLE}
+            >Add</button>
         </div>
     </>
 }
