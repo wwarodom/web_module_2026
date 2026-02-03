@@ -6,6 +6,11 @@ import { EXTRA_STYLE, StudentType, STYLE, URL } from '@/constants/type'
 export default function Crud() {
     const [student, setStudent] = useState<StudentType>()
     const [students, setStudents] = useState<StudentType[]>()
+    const [form, setForm] = useState({
+        name: "Warodom",
+        age: 30
+    })
+
     const getAllStudents = async () => {
         const response = await fetch(URL)
         const students = await (response.json())
@@ -29,16 +34,15 @@ export default function Crud() {
 
     const createStudent = async () => {
         console.log("Click create student")
+        const { name, age } = form
         const response = await fetch(URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application.json"
             },
-            body: JSON.stringify({
-                name: "Lisa La flora",
-                age: 27
-            })
+            body: JSON.stringify({ name, age })
         })
+        await getAllStudents()
     }
 
     useEffect(() => {
@@ -53,7 +57,7 @@ export default function Crud() {
             {student &&
                 (<div>Student: {student.id}: {student.name}</div>)}
             <hr />
-            {student && <ul>
+            {students && <ul>
                 {
                     students.map((item, index) =>
                     (<li key={index}>
@@ -66,10 +70,18 @@ export default function Crud() {
         <h1>Add</h1>
         <div>
             <div>
-                Name: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="text" />
+                Name: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
             </div>
             <div>
-                Age: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="number" />
+                Age: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="number"
+                    name="age"
+                    value={form.age}
+                    onChange={(e) => setForm({ ...form, age: +e.target.value })}
+                />
             </div>
             <div>
                 <button className={STYLE}
