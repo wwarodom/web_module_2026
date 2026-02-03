@@ -45,14 +45,22 @@ export default function Crud() {
         await getAllStudents()
     }
 
+    const deleteStudent = async (id: string) => {
+        const response = await fetch(`${ URL }/${ id }`, {
+            method: "DELETE"
+        })
+        await getAllStudents()
+    }
+
     useEffect(() => {
         getStudent("dddw")
         getAllStudents()
         console.log("Student: ", student)
     }, [])
 
-    return <>
-        <h1>CRUD </h1>
+    return <div className="border m-6 p-6 bg-amber-50 shadow-xl rounded">
+        <h1 className="text-xl font-bold">CRUD </h1>
+        <hr />
         <div>
             {student &&
                 (<div>Student: {student.id}: {student.name}</div>)}
@@ -62,32 +70,41 @@ export default function Crud() {
                     students.map((item, index) =>
                     (<li key={index}>
                         {item.id}:{item.name}
+
+                        <button
+                            className={STYLE}
+                            onClick={() => deleteStudent(item.id)}
+                        >
+                            x
+                        </button>
                     </li>))
                 }
             </ul>}
         </div>
 
-        <h1>Add</h1>
-        <div>
+        <div className="p-4  bg-green-50 rounded shadow border">
+            <h1>Add</h1>
             <div>
-                Name: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                />
-            </div>
-            <div>
-                Age: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="number"
-                    name="age"
-                    value={form.age}
-                    onChange={(e) => setForm({ ...form, age: +e.target.value })}
-                />
-            </div>
-            <div>
-                <button className={STYLE}
-                    onClick={createStudent}
-                >Add</button>
+                <div>
+                    Name: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="text"
+                        name="name"
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    />
+                </div>
+                <div>
+                    Age: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="number"
+                        name="age"
+                        value={form.age}
+                        onChange={(e) => setForm({ ...form, age: +e.target.value })}
+                    />
+                </div>
+                <div>
+                    <button className={STYLE}
+                        onClick={createStudent}
+                    >Add</button>
+                </div>
             </div>
         </div>
-    </>
+    </div>
 }
