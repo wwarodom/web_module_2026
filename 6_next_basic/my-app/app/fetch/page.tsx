@@ -16,7 +16,9 @@ export default function MyFetch() {
     const [user, setUser] = useState('wwarodom')
     const [data, setData] = useState<UserType>()
 
-    useEffect( () => {} , [] )
+    useEffect(() => {
+        fetchUser()
+    }, [])
 
     const fetchUser = async () => {
         const URL = `https://api.github.com/users/${ user }`
