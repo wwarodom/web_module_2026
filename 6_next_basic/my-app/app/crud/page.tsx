@@ -3,21 +3,40 @@ const URL = `http://localhost:4000/students`
 
 export default async function Crud() {
 
-    const response = await fetch(URL)
-    const students = await (response.json())
+    const getAllStudents = async () => {
+        const response = await fetch(URL)
+        const students = await (response.json())
+        return students;
+    }
+
+    const getStudent = async (id: string) => {
+        try {
+            const response = await fetch(`${ URL }/${ id }`)
+            if (!response.ok)
+                throw new Error(`HTTP error! ${ response.status }`)
+            const student = await response.json()
+            return student
+        }
+        catch (error) {
+            console.log("Failed to fetch students: ", error)
+        }
+    }
+
+    const students = await getAllStudents()
+    const student = await getStudent("0007")
 
     return <>
         <h1>CRUD </h1>
         <div>
-            {JSON.stringify(students)}
-        </div>
-        <div>
+            {student &&
+                (<div>Student: {student.id}: {student.name}</div>)}
+            <hr />
             <ul>
                 {
                     students.map((item, index) =>
-                        (<li key={index}>
-                            {item.id}:{item.name}
-                        </li>))
+                    (<li key={index}>
+                        {item.id}:{item.name}
+                    </li>))
                 }
             </ul>
         </div>
