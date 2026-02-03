@@ -43,12 +43,8 @@ export default async function Crud() {
 
         <h1>Add</h1>
         <div>
-            Name: <input
-                className={STYLE}
-                type="text" />
-            <button
-                className={STYLE}
-            >Add</button>
+            Name: <input className={STYLE} type="text" />
+            <button className={STYLE} >Add</button>
         </div>
     </>
 }
