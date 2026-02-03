@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 
 type UserType = {
     login: string
@@ -22,7 +22,7 @@ export default function MyFetch() {
         return () => controller.abort()  // to protect memory leaking
     }, [])
 
-    const fetchUser = async (signal?: AbortSignal): Promise<void> => {
+    const fetchUser = async (signal?: AbortSignal) => {
         const URL = `https://api.github.com/users/${ user }`
         const response = await fetch(URL, { signal });
         const data = await response.json()
@@ -46,7 +46,7 @@ export default function MyFetch() {
             <div>
                 <button
                     className='border px-2 m-2 rounded'
-                    onClick={fetchUser}>Fetch</button>
+                    onClick={() => fetchUser}>Fetch</button>
             </div>
         </div>
 
