@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { StudentType, URL } from '@/constants/type'
+import { EXTRA_STYLE, StudentType, STYLE, URL } from '@/constants/type'
 
 export default function Crud() {
     const [student, setStudent] = useState<StudentType>()
@@ -42,8 +42,10 @@ export default function Crud() {
     }
 
     useEffect(() => {
-
-    })
+        getStudent("dddw")
+        getAllStudents()
+        console.log("Student: ", student)
+    }, [])
 
     return <>
         <h1>CRUD </h1>
@@ -51,14 +53,14 @@ export default function Crud() {
             {student &&
                 (<div>Student: {student.id}: {student.name}</div>)}
             <hr />
-            <ul>
+            {student && <ul>
                 {
                     students.map((item, index) =>
                     (<li key={index}>
                         {item.id}:{item.name}
                     </li>))
                 }
-            </ul>
+            </ul>}
         </div>
 
         <h1>Add</h1>
