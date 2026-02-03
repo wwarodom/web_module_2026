@@ -1,5 +1,6 @@
 const URL = `http://localhost:4000/students`
 const STYLE = `border m-2 p-2 shadow rounded text-gray font-bold`
+const EXTRA_STYLE = `focus:outline-amber-200`
 
 export default async function Crud() {
 
@@ -20,6 +21,19 @@ export default async function Crud() {
         catch (error) {
             console.log("Failed to fetch students: ", error)
         }
+    }
+
+    const createStudent = async () => {
+        const res = await fetch(URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application.json"
+            },
+            body: JSON.stringify({
+                name: "Lisa La flora",
+                age: 27
+            })
+        })
     }
 
     const students = await getAllStudents()
@@ -43,8 +57,10 @@ export default async function Crud() {
 
         <h1>Add</h1>
         <div>
-            Name: <input className={STYLE} type="text" />
-            <button className={STYLE} >Add</button>
+            Name: <input className={`${ STYLE } ${ EXTRA_STYLE }`} type="text" />
+            <button className={STYLE} 
+                
+                >Add</button>
         </div>
     </>
 }
