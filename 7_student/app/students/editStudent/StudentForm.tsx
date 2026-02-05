@@ -2,7 +2,7 @@
 
 import { StudentType, STYLE } from '@/constants/type'
 import { useState, useTransition } from 'react'
-import { createStudent, deleteStudent, updateStudent } from '../../_actions/studentAction'
+import { createStudent, deleteStudent, updateStudent } from '../_actions/studentAction'
 
 export default function StudentForm({ students }: { students: StudentType[] }) {
 
