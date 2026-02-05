@@ -37,7 +37,7 @@ export default function Ex1() {
                 </form>
             </div>
 
-            <div className={STYLE}>
+            <div className={STYLE}> Result:
                 {state.error && <p className="text-red-600">{state.error}</p>}
                 {state.message && <p className="text-green-600">{state.message.name}</p>}
 
