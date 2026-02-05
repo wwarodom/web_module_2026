@@ -12,6 +12,7 @@ export default function Layout({
             <nav className="mx-8 p-4">
                 <Link className={STYLE} href="/students/">Home</Link>
                 <Link className={STYLE} href="/students/editStudent">Edit</Link>
+                <Link className={STYLE} href="/students/register">Register</Link>
             </nav>
             {children}
         </div>
