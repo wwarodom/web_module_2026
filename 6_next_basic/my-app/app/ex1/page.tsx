@@ -29,8 +29,18 @@ export default function Ex1() {
                 <form className={STYLE} action={action}>
                     <label className={STYLE} htmlFor="name">Name</label>
                     <input className={STYLE} type="text" name="name" placeholder="Warodom" />
-                    <button className={STYLE} >Submit</button>
+                    <button className={STYLE}
+                        disabled={isPending}
+                    >
+                        {isPending ? "Submitting...." : "Submit"}
+                    </button>
                 </form>
+            </div>
+
+            <div className={STYLE}>
+                {state.error && <p className="text-red-600">{state.error}</p>}
+                {state.message && <p className="text-green-600">{state.message.name}</p>}
+
             </div>
         </div>
     )
